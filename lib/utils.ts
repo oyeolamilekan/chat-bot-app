@@ -39,3 +39,7 @@ export const stringToSlug = (str: string): string => {
 
   return str;
 }
+
+export const isValidValue = (value: any): boolean => {
+  return value !== null && value !== undefined && !isNaN(value);
+}

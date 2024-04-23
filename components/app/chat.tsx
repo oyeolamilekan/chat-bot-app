@@ -3,8 +3,8 @@
 import React, { useRef } from 'react'
 import { Input, Button } from '../ui'
 import { Message, useChat } from "ai/react";
-import { ArrowDown, CornerDownLeft, Link2, Loader } from "lucide-react"
-import { cn, formatDate } from '@/lib';
+import { ArrowDown, BoxIcon, CornerDownLeft, Link2, Loader } from "lucide-react"
+import { cn, formatDate, isValidValue } from '@/lib';
 import { useChatApp, useScrollAnchor } from '@/hooks';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
@@ -29,6 +29,7 @@ export const Chat = ({ chatId, currentChat }: Props) => {
 
   const { data, isLoading, refetch: refresh } = useQuery({
     queryKey: ["chat", chatId],
+    enabled: isValidValue(chatId),
     queryFn: async () => {
       const response = await axios.post<Message[]>("/api/messages", {
         chatId,
@@ -51,8 +52,15 @@ export const Chat = ({ chatId, currentChat }: Props) => {
 
   const { messagesRef, scrollRef, visibilityRef, isAtBottom, scrollToBottom } = useScrollAnchor()
 
+  if (!chatId) return <div className='flex flex-col justify-center items-center h-screen'>
+    <BoxIcon />
+    <h1 className="text-2xl font-semibold">
+      No current chats.
+    </h1>
+  </div>
+
   if (isLoading) return <div className='flex justify-center items-center h-screen'>
-    <Loader className="absolute h-8 w-8 text-black animate-spin"/>
+    <Loader className="absolute h-8 w-8 text-black animate-spin" />
   </div>
 
   return (
@@ -94,7 +102,7 @@ export const Chat = ({ chatId, currentChat }: Props) => {
                         setReference(message?.references ?? [])
                       }
                     }}>
-                    <span className='flex gap-2 items-center mb-2'>Show references <Link2/></span>
+                    <span className='flex gap-2 items-center mb-2'>Show references <Link2 /></span>
                   </div>}
                   <p className={cn("text-xs py-2 text-gray-500", {
                     "text-right": message.role === 'user',

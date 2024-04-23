@@ -19,12 +19,12 @@ const Page = async ({ params: { chatId } }: Props) => {
 
   const currentChat = _chats.find((chat) => chat.id === parseInt(chatId));
 
-  if (!_chats) {
-    return redirect("/");
-  }
-  if (!_chats.find((chat) => chat.id === parseInt(chatId))) {
-    return redirect("/");
-  }
+  // if (!_chats) {
+  //   return redirect("/");
+  // }
+  // if (!_chats.find((chat) => chat.id === parseInt(chatId))) {
+  //   return redirect("/");
+  // }
 
   return (
     <div className="flex max-h-screen overflow-scroll">
