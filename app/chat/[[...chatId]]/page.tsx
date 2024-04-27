@@ -1,11 +1,12 @@
 import React from 'react'
-import { desc } from 'drizzle-orm';
+import { desc, eq } from 'drizzle-orm';
 import { redirect } from 'next/navigation';
 import { db } from '@/db';
 import { chats } from '@/db/schema';
 import { SideBar } from '@/components/app';
 import { Chat } from '@/components/app/chat';
 import { Reference } from '@/components/app/reference';
+import { auth } from '@clerk/nextjs/server';
 
 type Props = {
   params: {
@@ -15,16 +16,14 @@ type Props = {
 
 const Page = async ({ params: { chatId } }: Props) => {
 
-  const _chats = await db.select().from(chats).orderBy(desc(chats.createdAt))
+  const { userId } = await auth();
+  if (!userId) {
+    return redirect("/sign-in");
+  }
+
+  const _chats = await db.select().from(chats).where(eq(chats.userId, userId)).orderBy(desc(chats.createdAt))
 
   const currentChat = _chats.find((chat) => chat.id === parseInt(chatId));
-
-  // if (!_chats) {
-  //   return redirect("/");
-  // }
-  // if (!_chats.find((chat) => chat.id === parseInt(chatId))) {
-  //   return redirect("/");
-  // }
 
   return (
     <div className="flex max-h-screen overflow-scroll">

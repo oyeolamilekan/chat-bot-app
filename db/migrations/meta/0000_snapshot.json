@@ -1,5 +1,5 @@
 {
-  "id": "50f76588-703e-49b2-8598-7be83bc92547",
+  "id": "ffaaa5b8-afec-4000-a7ed-f14995f370b8",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "5",
   "dialect": "pg",
@@ -14,12 +14,17 @@
           "primaryKey": true,
           "notNull": true
         },
+        "user_id": {
+          "name": "user_id",
+          "type": "varchar(250)",
+          "primaryKey": false,
+          "notNull": true
+        },
         "title": {
           "name": "title",
           "type": "varchar(250)",
           "primaryKey": false,
-          "notNull": true,
-          "default": "''"
+          "notNull": true
         },
         "name": {
           "name": "name",

@@ -1,8 +1,12 @@
 import React from 'react'
 import Image from "next/image"
+import { useRouter } from 'next/navigation'
 import { Button } from '../ui'
+import { currentUser, getAuth } from '@clerk/nextjs/server'
 
 export function Navigation() {
+  const router = useRouter()
+
   return (
     <nav className="sticky z-50 inset-x-0 top-0 py-1 backdrop-blur-sm bg-white/30">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-1">
@@ -32,8 +36,8 @@ export function Navigation() {
           </ul>
         </div>
         <div className='space-x-3'>
-          <Button variant={'outline'} size={'small'}>Book Demo</Button>
-          <Button variant={'dark'} size={'small'}>Sign In</Button>
+          <Button variant={'outline'} size={'small'} onClick={() => router.push("/sign-in")}>Sign In</Button>
+          <Button variant={'dark'} size={'small'} onClick={() => router.push("/sign-up")}>Sign Up</Button>
         </div>
       </div>
     </nav>

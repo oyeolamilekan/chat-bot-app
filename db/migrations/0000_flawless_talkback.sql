@@ -1,6 +1,7 @@
 CREATE TABLE IF NOT EXISTS "chats" (
 	"id" serial PRIMARY KEY NOT NULL,
-	"title" varchar(250) DEFAULT '' NOT NULL,
+	"user_id" varchar(250) NOT NULL,
+	"title" varchar(250) NOT NULL,
 	"name" varchar(250) NOT NULL,
 	"website" varchar(250) NOT NULL,
 	"created_at" timestamp DEFAULT now() NOT NULL

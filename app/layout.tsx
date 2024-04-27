@@ -3,6 +3,8 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import Providers from "./providers";
 import { Toaster } from 'react-hot-toast';
+import { ClerkProvider } from "@clerk/nextjs";
+
 
 const inter = Poppins({ weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900", "900"], subsets: ['devanagari'] });
 
@@ -17,11 +19,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <Providers>
-      <html lang="en">
-        <body className={inter.className}>{children}</body>
-        <Toaster />
-      </html>
-    </Providers>
+    <ClerkProvider>
+      <Providers>
+        <html lang="en">
+          <body className={inter.className}>{children}</body>
+          <Toaster />
+        </html>
+      </Providers>
+    </ClerkProvider>
   );
 }

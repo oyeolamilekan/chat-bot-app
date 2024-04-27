@@ -2,6 +2,7 @@ import { pgTable, serial, text, timestamp, varchar } from "drizzle-orm/pg-core";
 
 export const chats = pgTable('chats', {
   id: serial("id").primaryKey(),
+  userId: varchar('user_id', { length: 250 }).notNull(),
   title: varchar('title', { length: 250 }).notNull(),
   name: varchar('name', { length: 250 }).notNull(),
   website: varchar('website', { length: 250 }).notNull(),

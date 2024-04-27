@@ -3,7 +3,7 @@
 import React, { useRef } from 'react'
 import { Input, Button } from '../ui'
 import { Message, useChat } from "ai/react";
-import { ArrowDown, BoxIcon, CornerDownLeft, Link2, Loader } from "lucide-react"
+import { ArrowDown, Bot, BoxIcon, CornerDownLeft, Link2, Loader } from "lucide-react"
 import { cn, formatDate, isValidValue } from '@/lib';
 import { useChatApp, useScrollAnchor } from '@/hooks';
 import { useQuery } from '@tanstack/react-query';
@@ -40,7 +40,7 @@ export const Chat = ({ chatId, currentChat }: Props) => {
   });
 
 
-  const { input, handleInputChange, handleSubmit, messages, setMessages } = useChat({
+  const { input, handleInputChange, handleSubmit, messages, setMessages, isLoading: aiLoading } = useChat({
     api: "/api/chat",
     body: { chatId },
     initialMessages: data || [],
@@ -65,7 +65,14 @@ export const Chat = ({ chatId, currentChat }: Props) => {
 
   return (
     <div className="h-screen">
-      <h2 className="px-4 py-2 font-semibold text-2xl">{currentChat.title}</h2>
+      <h2 className="px-4 py-2 font-semibold text-2xl">{currentChat?.title}</h2>
+      
+      {aiLoading && (
+        <div className="absolute top-0 left-0 right-0 mt-9 flex justify-center">
+          <div className="p-4 bg-black rounded text-white text-center shadow-lg flex space-x-2 align-middle"><Bot /> <span>AI is generating.</span></div>
+        </div>
+      )}
+
       <div className="flex flex-col overflow-auto h-[95%]" ref={scrollRef}>
         <Button
           variant="ghost"

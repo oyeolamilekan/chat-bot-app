@@ -1,1 +1,0 @@
-ALTER TABLE "chats" ALTER COLUMN "title" DROP DEFAULT;
