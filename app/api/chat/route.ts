@@ -48,18 +48,19 @@ export async function POST(req: Request) {
     stream: true
   });
   const stream = OpenAIStream(response, {
-    onCompletion: async (completion) => {
+    onStart: async () => {
       await db.insert(_messages).values({
         chatId: chatId,
         content: lastMessage.content,
         role: "user",
       });
-
+    },
+    onCompletion: async (completion) => {
       await db.insert(_messages).values({
         chatId: chatId,
         content: completion,
-        role: "assistant",
-        references: data.reference
+        references: data.reference,
+        role: "assistant"
       });
     }
   })

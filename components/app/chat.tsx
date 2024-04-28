@@ -3,7 +3,7 @@
 import React, { useRef } from 'react'
 import { Input, Button } from '../ui'
 import { Message, useChat } from "ai/react";
-import { ArrowDown, Bot, BoxIcon, CornerDownLeft, Link2, Loader } from "lucide-react"
+import { ArrowDown, Bot, BoxIcon, CornerDownLeft, Link2, Loader, Square } from "lucide-react"
 import { cn, formatDate, isValidValue } from '@/lib';
 import { useChatApp, useScrollAnchor } from '@/hooks';
 import { useQuery } from '@tanstack/react-query';
@@ -40,7 +40,7 @@ export const Chat = ({ chatId, currentChat }: Props) => {
   });
 
 
-  const { input, handleInputChange, handleSubmit, messages, setMessages, isLoading: aiLoading } = useChat({
+  const { input, handleInputChange, handleSubmit, messages, setMessages, isLoading: aiLoading, stop } = useChat({
     api: "/api/chat",
     body: { chatId },
     initialMessages: data || [],
@@ -66,10 +66,10 @@ export const Chat = ({ chatId, currentChat }: Props) => {
   return (
     <div className="h-screen">
       <h2 className="px-4 py-2 font-semibold text-2xl">{currentChat?.title}</h2>
-      
+
       {aiLoading && (
-        <div className="absolute top-0 left-0 right-0 mt-9 flex justify-center">
-          <div className="p-4 bg-black rounded text-white text-center shadow-lg flex space-x-2 align-middle"><Bot /> <span>AI is generating.</span></div>
+        <div className="absolute z-10 top-0 left-0 right-0 mt-16 flex justify-center">
+          <div className="px-4 py-2 bg-black rounded text-white text-center shadow-lg flex space-x-2 justify-center items-center"><Bot /> <span>AI is generating.</span></div>
         </div>
       )}
 
@@ -125,9 +125,12 @@ export const Chat = ({ chatId, currentChat }: Props) => {
           <div className='bg-white rounded-t-md py-10 px-10 space-y-4 border-t bg-background shadow-lg sm:rounded-t-xl sm:border md:py-4 w-5/6 '>
             <form onSubmit={handleSubmit} className='flex flex-row space-x-4 mt-4'>
               <Input value={input} onChange={handleInputChange} placeholder='Ask anything?' className='w-full' variant={'noFocus'} />
-              <Button variant={'dark'} size={'icon'} className='mt-2'>
+              {!aiLoading && <Button variant={'dark'} size={'icon'} className='mt-2'>
                 <CornerDownLeft />
-              </Button>
+              </Button>}
+              {aiLoading && <Button variant={'dark'} size={'icon'} className='mt-2' onClick={stop}>
+                <Square />
+              </Button>}
             </form>
           </div>
         </div>

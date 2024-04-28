@@ -48,6 +48,7 @@ export function SideBar({ chats, chatId }: Props) {
     const { title, name, website } = values
     mutate({ title, name, website });
   };
+  
   const { resetReference } = useChatApp();
 
   const { values, onChange } = useForm({

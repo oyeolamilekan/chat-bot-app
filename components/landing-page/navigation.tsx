@@ -2,7 +2,7 @@ import React from 'react'
 import Image from "next/image"
 import { useRouter } from 'next/navigation'
 import { Button } from '../ui'
-import { currentUser, getAuth } from '@clerk/nextjs/server'
+import Link from 'next/link'
 
 export function Navigation() {
   const router = useRouter()
@@ -22,16 +22,16 @@ export function Navigation() {
         <div className="items-center hidden w-full md:flex md:w-auto text-sm" id="navbar-cta">
           <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0">
             <li>
-              <a href="#" className="block py-2 px-3 md:p-0 text-gray-900">Pricing</a>
+              <Link href="#" className="block py-2 px-3 md:p-0 text-gray-900">Pricing</Link>
             </li>
             <li>
-              <a href="#" className="block py-2 px-3 md:p-0 text-gray-900">Demo</a>
+              <Link href="#" className="block py-2 px-3 md:p-0 text-gray-900">Demo</Link>
             </li>
             <li>
-              <a href="#" className="block py-2 px-3 md:p-0 text-gray-900">Hire Me</a>
+              <Link href="#" className="block py-2 px-3 md:p-0 text-gray-900">Hire Me</Link>
             </li>
             <li>
-              <a href="#" className="block py-2 px-3 md:p-0 text-gray-900">Company</a>
+              <Link href="#" className="block py-2 px-3 md:p-0 text-gray-900">Company</Link>
             </li>
           </ul>
         </div>

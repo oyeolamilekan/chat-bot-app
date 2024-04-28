@@ -5,6 +5,11 @@ export const createChat = async (body: any) => {
   return data;
 }
 
+export const addToWaitList = async (body: any) => {
+  const { data } = await axios.post('/api/waitlist', body);
+  return data;
+}
+
 export const fetchMessage = async (messageId: number) => {
   const { data } = await axios.get(`/api/message/${messageId}`);
   return data;
