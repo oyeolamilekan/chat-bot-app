@@ -2,7 +2,7 @@ import { FormEventHandler, ReactNode } from 'react'
 
 export function Form({ onSubmit = () => { }, children }: PropTypes) {
     return (
-        <form onSubmit={onSubmit}>
+        <form onSubmit={onSubmit} autoComplete={"off"}>
             {children}
         </form>
     )
