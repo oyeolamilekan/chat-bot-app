@@ -14,7 +14,7 @@ export const fetchHeyPosts = async (username: string, title: string) => {
     return { title: removeNewlinesAndTrim(blogResponse!.title), body: removeNewlinesAndTrim(blogResponse!.blogText), url: `${url}${link}` }
   }))
   blogDocuments = [...blogDocuments, ...blogPosts]
-  if (count <= 4) {
+  if (count <= 2) {
     count++
     plink = paginatedLink
     await fetchHeyPosts(username, title)
