@@ -36,8 +36,8 @@ export function Navigation() {
           </ul>
         </div>
         <div className='space-x-3'>
-          <Button variant={'outline'} size={'small'} onClick={() => router.push("/sign-in")}>Sign In</Button>
-          <Button variant={'dark'} size={'small'} onClick={() => router.push("/sign-up")}>Sign Up</Button>
+          <Button variant={'outline'} size={'small'}>Sign In</Button>
+          <Button variant={'dark'} size={'small'}>Sign Up</Button>
         </div>
       </div>
     </nav>
