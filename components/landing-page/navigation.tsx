@@ -10,7 +10,7 @@ export function Navigation() {
   return (
     <nav className="sticky z-50 inset-x-0 top-0 py-1 backdrop-blur-sm bg-white/30">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-1">
-        <a href="https://flowbite.com/" className="flex items-center space-x-1 rtl:space-x-reverse">
+        <a href="#" className="flex items-center space-x-1 rtl:space-x-reverse">
           <Image
             alt="Video course starter kit"
             height={42}
