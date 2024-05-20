@@ -61,7 +61,11 @@ export async function getContext(query: string, fileKey: string) {
   // 5 vectors
   let dataMap = {
     reference: docs,
-    content: docs.map(data => `${data?.title} ${data?.body}`).join("\n").substring(0, 3000)
+    content: docs.map(data => `
+      Blog Title: ${data?.title} 
+      Blog Body: ${data?.body}
+      \n
+    `).join("\n").substring(0, 3000)
   }
   return dataMap
 }
@@ -87,7 +91,6 @@ export async function getMatchesFromEmbeddings(embeddings: number[], fileKey: st
 
 export const loadBlogToPinecone = async (blogPosts: BlogDocument[], blogTitle: string) => {
   const vectors = await Promise.all(blogPosts.flat().map(embedDocument));
-  console.log(vectors.length)
   const blogKey = stringToSlug(blogTitle)
   const client = getPineconeClient();
   const pineconeIndex = client.index<BlogDocument>("ai-knowldge-base");

@@ -22,16 +22,10 @@ export function Navigation() {
         <div className="items-center hidden w-full md:flex md:w-auto text-sm" id="navbar-cta">
           <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0">
             <li>
-              <Link href="#" className="block py-2 px-3 md:p-0 text-gray-900">Pricing</Link>
+              <Link href="https://github.com/oyeolamilekan/chat-bot-app" target='__blank__' className="block py-2 px-3 md:p-0 text-gray-900">Code</Link>
             </li>
             <li>
-              <Link href="#" className="block py-2 px-3 md:p-0 text-gray-900">Demo</Link>
-            </li>
-            <li>
-              <Link href="#" className="block py-2 px-3 md:p-0 text-gray-900">Hire Me</Link>
-            </li>
-            <li>
-              <Link href="#" className="block py-2 px-3 md:p-0 text-gray-900">Company</Link>
+              <Link href="https://me.withapp.xyz/" target='__blank__' className="block py-2 px-3 md:p-0 text-gray-900">Hire Me</Link>
             </li>
           </ul>
         </div>
