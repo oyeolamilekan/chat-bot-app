@@ -11,6 +11,7 @@ const inter = Poppins({ weight: ["100", "200", "300", "400", "500", "600", "700"
 export const metadata: Metadata = {
   title: 'ChatAPP — Chat with your favourite blogs.',
   description: 'Instantly chat with your favorite blogs and get real-time responses, all in one app.',
+  metadataBase: new URL("https://chat-bot-app-chi.vercel.app/"),
   twitter: {
     title: 'ChatAPP — Chat with your favourite blogs.',
     card: 'summary_large_image',
