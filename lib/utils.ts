@@ -43,3 +43,5 @@ export const stringToSlug = (str: string): string => {
 export const isValidValue = (value: any): boolean => {
   return value !== null && value !== undefined && !isNaN(value);
 }
+
+export const pushToNewTab = (route: string) => window.open(route, "_blank");

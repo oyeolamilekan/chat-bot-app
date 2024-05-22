@@ -1,13 +1,13 @@
-import { ArrowRight, Check, Code, FileVideo } from "lucide-react";
+import { Check, Code, FileVideo } from "lucide-react";
 import { Button, Form, Input, Modal } from "../ui";
 import React, { FormEvent, useReducer } from 'react'
 import { useForm } from "@/hooks";
 import toast from "react-hot-toast";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { addToWaitList } from "@/endpoints/chats";
+import { pushToNewTab } from "@/lib";
 
 export function Hero() {
-  const queryClient = useQueryClient()
 
   const initState = { joinWaitList: false }
 
@@ -48,7 +48,7 @@ export function Hero() {
           <li className="flex items-center justify-center lg:justify-start gap-2"><Check className="text-emerald-600" /> Chat with your favourite writers.</li>
         </ol>
         <div className="flex md:flex-row flex-col md:space-x-5 mb-5">
-          <Button className="md:my-6 my-5 w-60 rounded-full p-3 space-x-12 group" variant={'dark'} onClick={toggleWaitListModal}>
+          <Button className="md:my-6 my-5 w-60 rounded-full p-3 space-x-12 group" variant={'dark'} onClick={() => pushToNewTab("https://github.com/oyeolamilekan/chat-bot-app")}>
             View Code <Code className="ml-1 w-4 h-4 fill-primary-content group-hover:scale-110 group-hover:translate-x-0.5 transition-transform duration-200" />
           </Button>
           <Button className="md:my-6 w-60 rounded-full p-3 space-x-12 group" variant={'outline'}>
